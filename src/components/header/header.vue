@@ -12,7 +12,7 @@
                 <span class="name">{{seller.name}}</span>
             </div>
             <div class="description">
-                {{seller.description}}/{{seller.deliverTime}}分钟送达
+                {{seller.description}} / {{seller.deliveryTime}}分钟送达
             </div>
              <div v-if="seller.supports" class="support">  <!--初始化的时候seller为空对象 所以要写v-if -->
                 <span class="icon" :class="classMap[seller.supports[0].type]"></span>
@@ -26,7 +26,7 @@
         </div>
     </div>
     <div class="bulletin-wrapper">
-         <!-- 将两个span写在一起可以去除间隙 和fong-size同理 -->
+         <!-- 将两个span写在一起可以去除间隙 和font-size同理 -->
         <span class="bulletin-title"></span><span class="bulletin-text">{{seller.bulletin}}</span>
         <i class="icon-keyboard_arrow_right"></i>    
     </div>

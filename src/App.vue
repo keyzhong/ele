@@ -29,7 +29,7 @@
         seller:{}
       }
     },
-    created() {
+    created() { // created表示实例已经创建完成之后被调用 一般可以在created函数中调用ajax获取页面初始化所需的数据。
       this.$http.get('/api/seller').then((response) => {
         console.log(response)
         response = response.body;
