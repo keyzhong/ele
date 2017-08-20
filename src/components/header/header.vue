@@ -155,7 +155,7 @@
                         width:12px
                         margin-right:4px
                         background-size:12px 12px
-                        backgroud-repeat:no-repeat
+                        background-repeat:no-repeat
                         &.decrease
                             bg-image('decrease_1')
                         &.discount
