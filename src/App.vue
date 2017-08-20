@@ -39,7 +39,7 @@
         }
       })
     },
-    components: {
+    components: {  //引用的组件
       'v-header': header
     }
   };

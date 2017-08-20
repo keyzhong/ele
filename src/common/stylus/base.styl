@@ -8,7 +8,14 @@ body,html{
 
 
 
-
+.clearfix:before,.clearfix:after 
+	content: " "
+	display:table
+.clearfix:after 
+	clear:both
+	overflow:hidden
+.clearfix 
+	zoom: 1
 
 
 
