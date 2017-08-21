@@ -1,6 +1,6 @@
 <template>
     <!-- goods设置绝对定位 固定视口 -->
-    <div class="goods">  
+<div class="goods">  
      <!-- 侧边栏导航 -->
      <!--v-el获取dom对象 必修用中横线连接 不能用驼峰-->
     <div class="menu-wrapper"  v-el:menu-wrapper>
@@ -30,17 +30,23 @@
                             <div class="price">
                                 <span class="new">￥{{food.price}}</span><span class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</span>
                             </div>
+                            <div class="cartcontrol-wrapper">
+                                <cartcontrol :food="food"></cartcontrol>
+                            </div>
                         </div>
                     </li>
                 </ul>
             </li>
         </ul>
     </div>
+    <shopcart :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>    
  </div>
 </template>
 
 <script type="text/ecmascript-6">
     import BScroll from "better-scroll";
+    import shopcart from "components/shopcart/shopcart";
+    import cartcontrol from "components/cartcontrol/cartcontrol";
     const err_ok = 0;
 
  export default {
@@ -48,12 +54,12 @@
         return {
             goods:[],
             listHeight:[],
-            scrollY:0
+            scrollY:0,
         };
 
     },
     computed:{
-        currentIndex(){
+        currentIndex(){   // 计算当前的选项
             for(let i=0; i<this.listHeight.length; i++){
                 let height1 =this.listHeight[i];
                 let height2 =this.listHeight[i+1];
@@ -62,6 +68,19 @@
                     return i;
                 }
             }
+        },
+        selectFoods(){
+            let foods = [];
+            this.goods.forEach( (good)=> {
+                good.foods.forEach( (food) => {
+                    if(food.count){
+                        foods.push(food);
+                    }
+                })
+            })
+
+            console.log(foods)
+            return foods;
         }
     },
     created(){
@@ -83,22 +102,23 @@
                 click:true
             });
             this.foodsScroll = new BScroll(this.$els.foodsWrapper,{
+                click:true,
                 probeType:3
             });
 
-            this.foodsScroll.on('scroll',(pos)=>{
-                this.scrollY = Math.abs(Math.round(pos.y));
-            });
+                this.foodsScroll.on('scroll',(pos)=>{     // 实时监听滚动 获取滚动的Y值
+                    this.scrollY = Math.abs(Math.round(pos.y));
+                });
            
         },
         _calculateHeight(){
-            let foodList = this.$els.foodsWrapper.querySelectorAll('.food-list-hook');
+            let foodList = this.$els.foodsWrapper.querySelectorAll('.food-list-hook'); // 每个区间
             let height = 0;
             this.listHeight.push(height);
             for(let i =0; i<foodList.length;i++){
                 let item  =foodList[i];
                 height+=item.clientHeight;
-                this.listHeight.push(height); 
+                this.listHeight.push(height);  // 获得每个区间的高的数组
             }
             console.log(this.listHeight)
         },
@@ -110,7 +130,6 @@
             let foodList = this.$els.foodsWrapper.querySelectorAll('.food-list-hook');
             let el = foodList[index];
             this.foodsScroll.scrollToElement(el,300)
-
             console.log(index)
         }
     },
@@ -120,7 +139,8 @@
         }
     },
     components: {
-
+        shopcart:shopcart,
+        cartcontrol:cartcontrol
     }
 }
 </script>
@@ -229,6 +249,10 @@
                             text-indent:line-through
                             color:rgb(147,153,159)
                             font-szie:10px
+                    .cartcontrol-wrapper
+                        position :absolute
+                        right:0
+                        bottom:12px
 
 
                         

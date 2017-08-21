@@ -14,14 +14,12 @@
         <a v-link="{path:'/seller'}">商家</a>
       </div>
     </div>
-    <goods></goods>
-    <router-view></router-view>   
+    <router-view :seller="seller"></router-view>   
   </div>
 </template>
 
 <script type="text/ecmascript-6">
   import header from './components/header/header';
-  import goods from './components/goods/goods';
 
   const err_ok = 0; // 便于判断和修改
 
@@ -42,8 +40,7 @@
       })
     },
     components: {  //引用的组件
-      'v-header': header,
-      'goods' :goods
+      'v-header': header
     }
   };
 </script>
