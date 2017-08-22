@@ -39,7 +39,7 @@
             </li>
         </ul>
     </div>
-    <shopcart :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>    
+    <shopcart v-ref:shopcart :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>    
  </div>
 </template>
 
@@ -78,8 +78,6 @@
                     }
                 })
             })
-
-            console.log(foods)
             return foods;
         }
     },
@@ -109,8 +107,16 @@
                 this.foodsScroll.on('scroll',(pos)=>{     // 实时监听滚动 获取滚动的Y值
                     this.scrollY = Math.abs(Math.round(pos.y));
                 });
-           
         },
+        _drop(target){
+
+            // 体验优化 异步执行下落动画
+           this.$nextTick(()=>{
+                // 访问子组件
+                this.$refs.shopcart.drop(target);
+            })
+        },
+           
         _calculateHeight(){
             let foodList = this.$els.foodsWrapper.querySelectorAll('.food-list-hook'); // 每个区间
             let height = 0;
@@ -131,6 +137,11 @@
             let el = foodList[index];
             this.foodsScroll.scrollToElement(el,300)
             console.log(index)
+        }
+    },
+    events:{
+        'cart.add'(target){
+            this._drop(target);
         }
     },
     props:{

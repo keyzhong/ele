@@ -29,17 +29,24 @@ export default {
        
     },
     methods:{
-        addCart(){
+        addCart(event){  // 添加商品进购物车
             if(!this.food.count){
                 //this.food.count=1;  //不能这么写（无法检测新增属性变化） 当给一个观测对象添加一个不存在属性时 vue无法检测
-                                        // 需要调用Vue的一个借口 vue.set('target','key',value)
+                                        // 需要调用Vue的一个接口 vue.set('target','key',value)
                 vue.set(this.food,'count',1)
             }else{
                 this.food.count++;
             }
-            console.log(this.food)
+            // vue1.0中 vm.$dispatch 和 vm.$broadcast 被弃用，改用$emit,$on
+            // 子组件通过$emit来触发事件，将参数传递出去
+            // this.$emit('card-add',event.target);  ==> vue2这样写
+            this.$dispatch('cart.add',event.target);
+
         },
-        decreaseCart(){
+        decreaseCart(){   // 从购物车删除商品
+            if(this.food.count===0){
+                return;
+            }
             this.food.count--;
         }
         
@@ -87,7 +94,5 @@ export default {
             line-height:24px
             padding:6px
             color:rgb(0,160,220)
-
-
 
 </style>
