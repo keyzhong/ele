@@ -102,14 +102,14 @@
                 let diff = this.minPrice - this.totalPrice;
                 return `还差￥${diff}元起送`;
             }else{
-                return '去结算'
+                return '去结算';
             }
         },
         payClass(){
             if(this.totalPrice < this.minPrice){
                 return 'not-enough';
             }else{
-                return 'enough'
+                return 'enough';
             }
         },
         listShow(){
@@ -120,7 +120,6 @@
             let show =!this.fold;
             if(show){
                 this.$nextTick( ()=>{
-            console.log(this.$els)
                     if(!this.scroll){
                         this.scroll= new BScroll(this.$els.listContent,{
                             click:true
@@ -131,7 +130,6 @@
                     }
                 })
             }
-            console.log('show'+show)
             return show;
         }
 
@@ -151,22 +149,22 @@
                 }
             }
         },
-        toggleList(){
+        toggleList(){  // 购物车切换
              if(!this.totalCount){
                  return ;
              }
              this.fold = !this.fold;
              console.log(this.fold)
         },
-        empty(){
+        empty(){  // 清空购物车
             this.selectFoods.forEach( (food)=>{
                 food.count = 0;
             })
         },
-        hideList(){
+        hideList(){  // 收起购物车
             this.fold=true;
         },
-        pay(){
+        pay(){  // 去支付
             if(this.totalPrice<this.minPrice){
                 return ;
             }

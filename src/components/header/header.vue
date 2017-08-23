@@ -227,7 +227,7 @@
             position:fixed
             top:0
             left:0
-            z-index:100
+            z-index:300
             width:100%
             height:100%
             overflow:auto
@@ -249,6 +249,7 @@
                 .detail-main
                     margin-top:64px
                     padding-bottom:64px
+                
                     .name
                         text-align:center
                         font-weight:700

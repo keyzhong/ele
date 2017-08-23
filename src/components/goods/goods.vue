@@ -16,7 +16,7 @@
             <li class="food-list food-list-hook" v-for="item in goods" >
                 <h1 class="title">{{item.name}}</h1>
                 <ul>
-                    <li v-for="food in item.foods" class="food-item border-1px">
+                    <li v-for="food in item.foods" class="food-item border-1px" @click="selectFood(food,$event)">
                         <div class="icon">
                             <img width="57" height="57" :src="food.icon" alt="">
                         </div>
@@ -40,6 +40,7 @@
         </ul>
     </div>
     <shopcart v-ref:shopcart :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>    
+    <food :food="selectedFood" v-ref:food></food>
  </div>
 </template>
 
@@ -47,6 +48,7 @@
     import BScroll from "better-scroll";
     import shopcart from "components/shopcart/shopcart";
     import cartcontrol from "components/cartcontrol/cartcontrol";
+    import food from "components/food/food";
     const err_ok = 0;
 
  export default {
@@ -55,6 +57,7 @@
             goods:[],
             listHeight:[],
             scrollY:0,
+            selectedFood:{}
         };
 
     },
@@ -137,6 +140,11 @@
             let el = foodList[index];
             this.foodsScroll.scrollToElement(el,300)
             console.log(index)
+        },
+        selectFood(food,event){
+            this.selectedFood = food;
+            console.log (this.$refs.food)
+            this.$refs.food.show();
         }
     },
     events:{
@@ -151,7 +159,8 @@
     },
     components: {
         shopcart:shopcart,
-        cartcontrol:cartcontrol
+        cartcontrol:cartcontrol,
+        food:food
     }
 }
 </script>
@@ -257,19 +266,12 @@
                             font-size:14px
                             color:rgb(240,20,20)
                         .old
-                            text-indent:line-through
+                            text-decoration:line-through
                             color:rgb(147,153,159)
-                            font-szie:10px
+                            font-size:10px
                     .cartcontrol-wrapper
                         position :absolute
                         right:0
                         bottom:12px
-
-
-                        
-
-
-                
-
 
 </style>

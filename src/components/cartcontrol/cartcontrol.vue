@@ -1,12 +1,12 @@
 <template>
  <div class="cartcontrol">
-     <div class="cart-decrese " v-show="food.count>0" @click="decreaseCart" transition="move">
+     <div class="cart-decrese " v-show="food.count>0" @click.stop.prevent="decreaseCart" transition="move">
          <span class="inner icon-remove_circle_outline"></span>
      </div>
      <div class="cart-count" v-show="food.count>0">
          {{food.count}}
      </div>
-     <div class="cart-add icon-add_circle" @click="addCart"></div>
+     <div class="cart-add icon-add_circle" @click.stop.prevent="addCart"></div>
  </div>
 </template>
 
@@ -38,7 +38,7 @@ export default {
                 this.food.count++;
             }
             // vue1.0中 vm.$dispatch 和 vm.$broadcast 被弃用，改用$emit,$on
-            // 子组件通过$emit来触发事件，将参数传递出去
+            // 自组建不能直接调用父组件的方法 所以 子组件通过$emit来触发事件，将参数传递出去
             // this.$emit('card-add',event.target);  ==> vue2这样写
             this.$dispatch('cart.add',event.target);
 
@@ -50,10 +50,6 @@ export default {
             this.food.count--;
         }
         
-    },
-   
-    components: {
-
     }
  }
 </script>
