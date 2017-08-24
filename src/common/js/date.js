@@ -1,5 +1,11 @@
+/*
+    格式化日期
+    stringObject.substr(start,length) 截取字符串 
+ */
+
 export function formatDate (date, fmt) {
     if (/(y+)/.test(fmt)) {
+        // (y) 匹配y保存y在名为$1...$9的变量中 
         fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
     }
     let o = {

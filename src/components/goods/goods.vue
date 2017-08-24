@@ -112,7 +112,6 @@
                 });
         },
         _drop(target){
-
             // 体验优化 异步执行下落动画
            this.$nextTick(()=>{
                 // 访问子组件
@@ -138,7 +137,7 @@
             // }
             let foodList = this.$els.foodsWrapper.querySelectorAll('.food-list-hook');
             let el = foodList[index];
-            this.foodsScroll.scrollToElement(el,300)
+            this.foodsScroll.scrollToElement(el,300);
             console.log(index)
         },
         selectFood(food,event){

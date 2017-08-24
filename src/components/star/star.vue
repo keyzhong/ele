@@ -65,7 +65,7 @@
             .star-item
                 width:20px
                 height:20px
-                margin-right:22px
+                margin-right:12px
                 background-size:20px 20px
                 &:last-child
                     margin-right:0
@@ -79,7 +79,7 @@
             .star-item
                 width:15px
                 height:15px
-                margin-right:16px
+                margin-right:6px
                 background-size:15px 15px
                 &:last-child
                     margin-right:0
