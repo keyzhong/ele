@@ -17,6 +17,7 @@
 
         }
     },
+    
     props:{  // 需要传入此组件的数据
         size:{    // 图片的size  48/36/24
             type:Number
@@ -60,6 +61,7 @@
         font-size:0
         .star-item
             display:inline-block
+            vertical-align:top
             background-repeat:no-repeat 
         &.star-48
             .star-item

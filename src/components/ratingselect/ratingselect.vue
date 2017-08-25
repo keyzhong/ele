@@ -83,7 +83,7 @@
     @import "../../common/stylus/mixin"
     .ratingselect
         .rating-type
-            padding:18px 0
+            padding:8px 0 26px 0
             margin:0 18px
             font-size:0
             border-1px(rgba(7,17,27,.3))
@@ -114,7 +114,7 @@
                     margin-left:2px
                     line-height:16px
         .switch
-            padding:12px 18px
+            padding:18px 12px
             line-height:24px;
             border-bottom:1px solid rgba(7,17,27,.3)
             color:rgb(147,153,159)

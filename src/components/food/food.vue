@@ -263,7 +263,7 @@
             padding-top:18px
             .title
                 line-height:36px
-                margin-left:18px
+                margin: 0  0  8px 18px
                 font-size:16px
             .rating-wrapper
                 padding:0 18px

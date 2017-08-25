@@ -26,6 +26,7 @@
         </div>
         <split></split>
         <!-- 评论区 -->
+        <h1 class="rating-title">商品评价</h1>
         <ratingselect :select-type="selectType" :only-content="onlyContent" :ratings="ratings" :desc="desc"></ratingselect>
         <div class="rating-wrapper">
             <ul>
@@ -270,5 +271,10 @@
                         line-height:12px
                         font-size:10px
                         color:rgb(147,153,159)
+        .rating-title
+            font-size:16px
+            line-height:36px
+            padding:18px 0 0 18px
+            margin-bottom:8px
 
-</style>
+  </style>
